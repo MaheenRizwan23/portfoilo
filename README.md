@@ -90,7 +90,7 @@ Cybersecurity · Offensive Security · Networking · Programming · CTFs · OSIN
 
 - [LinkedIn](https://linkedin/MAHEENRIZWAN/)  
 - [GitHub](your-link-here)  
-- [Portfolio Website](if you want one)  
+- Portfolio Website 
 
 ---
 This portfolio will continuously grow as I learn, build, and compete in more cybersecurity projects and CTFs. Stay tuned!  
