@@ -88,7 +88,7 @@ Cybersecurity · Offensive Security · Networking · Programming · CTFs · OSIN
 ---
 ### 🤝 Connect  
 
-- [LinkedIn](https://linkedin/MAHEENRIZWAN/)  
+- [LinkedIn](https://www.linkedin.com/in/maheen-rizwan-7a2651363)  
 - [GitHub](your-link-here)  
 - Portfolio Website 
 
