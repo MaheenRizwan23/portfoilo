@@ -1,95 +1,67 @@
 # 💻 Maheen Rizwan – Cybersecurity Portfolio  
+# Who am I
 
-### Professional Statement  
-Hello 👋 Thanks for stopping by! I’m **Maheen (Mahi)**, a cybersecurity student passionate about **Offensive Security, Red Teaming, and Creative Hacking Projects.**  
-I blend technical knowledge with creativity, aiming to inspire more girls to step into tech and cybersecurity.  
+I'm Maheen Rizwan — an offensive security researcher and student based in Pakistan. Currently pursuing a BS in Cybersecurity at Abdul Wali Khan University Mardan (AWKUM), I specialize in web application security auditing, network exploitation, and crafting modular Python tools to automate initial recon paths. 
 
-**Summary:**  
-- Cybersecurity student at Abdul Wali Khan University Mardan (Garden Campus).  
-- Aspiring **Offensive Security Analyst** (Red Teamer).  
-- Hands-on experience with **C++, Python, JavaScript, Linux, and Networking**.  
-- Skilled in **WiFi attacks, MITM, OSINT, Steganography, Honeypot design, Vulnerability Scanning, Recon, and Packet Sniffing**.  
-- Completed **9+ cybersecurity certifications**, CCNA in progress.  
-- Founder of **Cypherra CTF Platform** for team **Base102**.  
-- Researcher: Wrote a paper on introducing a GDGoC (Google Developer Group on Campus) chapter at my university.  
+My approach balances technical persistence with active community engagement. I hunt for configuration gaps, design security challenges, and build tools to make initial penetration testing smoother and more impactful. Beyond breaking code, I work to advocate for and inspire more women to step into the offensive security space.
+
+"Understand the network baseline, exploit the visibility gaps, then script the fix."
 
 ---
-### 🏆 Key Achievements  
 
-- **CTF Competitions**: Competed with **Base102** in CyberStreak CTF 2025.  
-- **Project Leadership**: Designed and deployed **Cypherra**, a hacker-themed CTF platform with modular categories, scoreboard, and timer.  
-- **Honeypot Security**: Built and deployed a honeypot to analyze unauthorized access attempts.  
-- **WiFi Security Projects**: Practiced jamming, deauthentication, and WPA/WPA2 cracking techniques using Kali Linux.  
-- **Packet Sniffer**: Developed a custom Python packet-sniffer to capture and analyze network traffic.  
-- **Research Contribution**: Proposed and documented the roadmap for launching a GDGoC chapter to build a local developer community.  
+## 🚀 Arsenal
+Tools I designed or adapted to streamline assessments and offensive labs.
 
----
-### 📚 Certifications & Training  
+### Acheron
+AI-powered web reconnaissance and security posture assessment engine. Automatically fingerprints infrastructure layers (50+ detections), validates missing security headers, analyzes cookie security configurations, audits high-risk ports, and builds responsive dark-mode HTML output. Built to merge separate fingerprinting and posture verification cycles into a single unified action.
+*Python • AI Recon • Vulnerability Assessment*
 
-**CTFs & Bootcamps**  
-- Cybergen Bootcamp CTF – Certificate of Appreciation  
-- CyberStreak CTF 2025 – Team Base102  
-- DevTown: *Network Ninja Firewall Defense Hack*  
-- DevTown: *5 Days Cybersecurity Bootcamp*  
+### Cypherra
+A modular, custom-built hacker-themed Capture The Flag (CTF) hosting platform built to handle user registration, categorized dynamic challenge deployment, live scoreboard tallies, and clean runtime constraints.
+*Flask • Python • Web Security • CTF Design*
 
-**Courses (Udemy)**  
-- *Ethical Hacking & Pentest Mystery*  
-- *Complete Cybersecurity*  
-- *Linux for Beginners Crash Course*  
-- *Red Team Mystery: Advanced Offensive Security*  
-
-**Workshops & Community**  
-- *Introduction to Bug Bounty* – Exabyte (Center for Cybersecurity & Digital Forensics)  
-- Certificate of Appreciation – DeafTown (Community Support)  
+### Custom Packet Sniffer
+A raw network traffic extraction script written to analyze packet structure, parse protocols, and evaluate active frame components for local infrastructure auditing.
+*Python • Scapy • Network Analysis*
 
 ---
-### 🛠️ Cybersecurity Portfolio  
 
-I have developed a cybersecurity project portfolio showcasing skills across **Red Teaming, Networking, Linux, OSINT, Steganography, and Scripting.**  
+## 🏆 Certifications & Training
 
-| Project | Skills/Tools | Knowledge Gained |  
-|---------|--------------|------------------|  
-| **Cypherra CTF Platform** | Flask, Python, HTML/CSS, Linux | Web security, CTF design, teamwork |  
-| **Honeypot Deployment** | Linux, Networking | Threat detection, attacker behavior |  
-| **Packet Sniffer** | Python, Scapy | Traffic capture, network analysis |  
-| **WiFi Attacks Lab** | Kali Linux, Bettercap, Aircrack-ng | WPA/WPA2 cracking, MITM, jamming |  
-| **OSINT Challenges** | ExifTool, Sherlock, Recon-ng | Metadata analysis, user footprinting |  
-| **Steganography Challenges** | Steghide, binwalk | Hidden data extraction, forensic skills |  
+### Achieved ──────────────────────────────────────────────────────────────────
+* **CAPIJ** | Certified API Hacking Junior — The XSS Rat (July 2026)
+* **CCNA (Pt. 1)** | Introduction to Networks — UET Peshawar (Oct 2025)
+* **Advent of Cyber 2025** | Web Attack Forensics & Malware Analysis — TryHackMe
+* **Red Team Mystery** | Advanced Offensive Security Training — Udemy
 
----
-### 🧰 Tools  
-
-- **OS & Platforms:** Kali Linux, Debian, Windows  
-- **Networking & Security:** Wireshark, nmap, Bettercap, Burp Suite, Recon-ng, Metasploit  
-- **Programming:** C++, Python, JavaScript  
-- **Utilities:** Git, GitHub, Docker (basic), Bash scripting  
+### Active Infiltration Tracks ─────────────────────────────────────────────────
+* **Ethical Hacking Internship** | Active Directory & Web/Network Exploitation — Secure Dev Labs `[ Current ]`
+* **CCNA Complete Routing & Switching** | Infrastructure Core `[ In Progress ]`
 
 ---
-### 🔑 Key Skills  
 
-- Penetration Testing & Vulnerability Assessment  
-- OSINT & Steganography Analysis  
-- Network Security & Troubleshooting (CCNA basics)  
-- WiFi Security (WEP/WPA/WPA2 cracking, MITM)  
-- Honeypot Deployment & Threat Monitoring  
-- CTF Solving (Base102 team)  
-- Linux Administration & Bash scripting  
-- Secure Web Development (Frontend + Security Basics)  
+## 🛠️ Skill Map
+```text
+Web Pentesting    Network Exploitation    OSINT & Footprinting    Wireless Auditing
+Vulnerability Assessment     Honeypot Engineering     Steganography     Bash Scripting
+Python    C++    Kali Linux    Wireshark    Nmap    Burp Suite    Metasploit    Scapy    Bettercap
 
----
-### 🎓 Education  
-- **BS Cybersecurity (in progress)**  
-  Abdul Wali Khan University, Mardan – Garden Campus  
+Experience & Engagements
+Ethical Hacker Intern | Secure Dev Labs (Jun 2026 - Present)
+Targeting Active Directory attack workflows, internal network pivoting exercises, and structured web service enumeration.
 
----
-### 🌟 Interests  
-Cybersecurity · Offensive Security · Networking · Programming · CTFs · OSINT · Digital Forensics · Creative UI Design · AI & Security  
+CTF Competitor & Lab Designer | Team Base102 (Jul 2025 - Present)
+Active participant in regional security exercises including CyberStreak CTF. Deployed custom lab honeypots to monitor, log, and study unauthorized threat actor authentication behaviors.
+
+Research & Community Builder | AWKUM Architecture Blueprint
+Authored and proposed the baseline operational roadmap for deploying a local technical community layer (GDGoC Chapter) to accelerate technical exposure across the student body.
+
 
 ---
 ### 🤝 Connect  
 
 - [LinkedIn](https://www.linkedin.com/in/maheen-rizwan-7a2651363)  
-- [GitHub](your-link-here)  
+- [GitHub](https://github.com/cybi-ladin/)  
 - Portfolio Website 
 
 ---
