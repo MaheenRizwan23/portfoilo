@@ -13,11 +13,23 @@ My approach balances technical persistence with active community engagement—hu
 ## 🛠️ Skill Map
 ```text
 🌐 Web Pentesting          🛡️ Network Exploitation       🕵️‍♂️ OSINT & Footprinting    📻 Wireless Auditing
-🔍 Threat Intelligence     🍯 Honeypot Engineering       🖼️ Steganography          🐚 Bash & Python Scripting
-Ecosystem & Tooling: Kali Linux | Wireshark | Nmap | Burp Suite | Metasploit | Scapy | Bettercap | Flask | Python 3 | C++
+🔍 Threat Intelligence     🍯 Honeypot Engineering       🖼️ Steganography          📊 SIEM & Log Analysis
+🐚 Python Scripting (Basic)
+
+Ecosystem & Tooling: Kali Linux | Wireshark | Nmap | Burp Suite | Metasploit | Exif | Bettercap |  Bloodhound | Wazuh SIEM | Splunk |
+Python 3 | C++
 
 ⚙️ Arsenal & Projects
-Tactical scripts, defensive traps, and tools designed to streamline security assessments.
+Tactical scripts, defensive architecture, and tools designed to streamline security assessments and continuous monitoring.
+
+🎥 CCTV Security Infrastructure Enhancement & Hardening
+Led a security hardening initiative targeting a live CCTV video infrastructure. Identified and remediated 10+ critical configuration flaws and access control weaknesses to eliminate unauthorized exposure surfaces. Developed and integrated a specialized monitoring ecosystem featuring a 3D infrastructure blueprint and architectural flow diagrams to map and defend the physical-to-digital network perimeter.
+
+🛡️ Wazuh SIEM End-to-End Deployment & Log Analysis
+Engineered an end-to-end continuous monitoring pipeline by deploying Wazuh SIEM. Managed full-cycle implementation including host agent enrollment, targeted rule tuning, and centralized dashboard compilation. Conducted deep-packet and log analysis across multi-host network events to eliminate visibility gaps, map systemic anomalies, and establish near real-time alerting for critical, previously undetected indicators of compromise (IoCs).
+
+📊 Splunk SIEM Infrastructure Deployment
+Architected and configured a localized Splunk environment tailored for centralized log collection, parsing, and advanced security data visibility. Structured ingestion pipelines to index system event metrics, enabling rapid query capabilities, custom threat hunting workflows, and high-fidelity operational dash-boards.
 
 🔍 Acheron
 An AI-powered web reconnaissance and security posture assessment engine. It fingerprints infrastructure layers (50+ structural signatures), validates missing security headers, analyzes cookie protections, flags high-risk open ports, and generates dark-mode HTML reports. It merges disparate scanning cycles into a single action.
@@ -44,11 +56,6 @@ A modular Capture The Flag (CTF) hosting platform featuring secure user registra
 
 Tech Stack: Flask • Python • Web Security • Lab Infrastructure
 
-🦤 Custom Packet Sniffer
-A raw network traffic parsing script built using low-level network frameworks to isolate frame structures, extract protocols, and inspect live packet compositions.
-
-Tech Stack: Python • Scapy • Traffic Forensics
-
 💼 Work Experience & Engagements
 🛡️ Ethical Hacker Intern | Secure Dev Labs
 June 2026 – July 2026
@@ -71,7 +78,16 @@ Active participant in regional cybersecurity exercises, including Cyber Streak C
 
 Deployed defensive sandbox honeypots to capture, log, and study threat actor authentication behaviors and brute-force indicators.
 
+---
 🎖️ Leadership & Impact
+👥 Female Coordinator @ Technology & Innovation Society (AWKUM)
+AWKUM Students Council
+
+Tech Advocacy: Organized large-scale educational tracks, including a GitHub Masterclass for 100+ students, to build campus-wide tech literacy.
+
+Diversity in Tech: Dedicated to mentoring, inspiring, and empowering female students to step into high-impact fields like Cybersecurity, AI, and Data Science.
+
+---
 🏆 Certifications & Training
 CAPIJ | Certified API Hacking Junior – The XSS Rat (July 2026)
 
@@ -84,7 +100,15 @@ Ethical Hacking & Pentest Mastery – OCSALY Academy
 Advent of Cyber 2025 | Web Forensics & Malware Analysis – TryHackMe
 
 Cybergen 5-Day Ethical Hacking Boot Camp – GDGOC PIEAC
+---
+---
 
+## 🏆 Platform Standings & Continuous Learning
+
+* **TryHackMe Profile:** Top 15% Globally | 45+ Labs Completed
+  * *Focus Areas:* Practical penetration testing, infrastructure auditing, network tracking, and OSINT methodology .
+
+---
 🤝 Connect With Me
 💼 LinkedIn
 
