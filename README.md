@@ -7,7 +7,7 @@ I am an Offensive Security Analyst and student based in Pakistan, currently purs
 My approach balances technical persistence with active community engagement—hunting for configuration gaps, building tactical tools, and actively advocating for diversity by helping more women step into the offensive security space.
 
 > *"Understand the network baseline, exploit the visibility gaps, then script the fix."*
-
+portfolio Website : https://cybi-ladin.github.io/portfoilo/
 ---
 
 ## 🛠️ Skill Map
