@@ -1,4 +1,4 @@
-Markdown
+
 # 💻 Maheen Rizwan | Cybersecurity Portfolio
 
 ## 🚀 Who I Am
@@ -12,12 +12,11 @@ My approach balances technical persistence with active community engagement—hu
 
 ## 🛠️ Skill Map
 ```text
-🌐 Web Pentesting          🛡️ Network Exploitation       🕵️‍♂️ OSINT & Footprinting    📻 Wireless Auditing
-🔍 Threat Intelligence     🍯 Honeypot Engineering       🖼️ Steganography          📊 SIEM & Log Analysis
-🐚 Python Scripting (Basic)
+🌐 Web Pentesting          🛡️ Network Exploitation       🕵️‍♂️ OSINT & SOCMINT         📻 Wireless Auditing
+📊 SIEM & Log Analysis     🫙 Container Security          🏗️ ICS / SCADA Security     ☁️ Cloud (AWS) Security
+🔍 Incident Response       🪟 Windows/Linux Forensics    🍯 Honeypot Engineering     🐚 Python Scripting(Basic)
 
-Ecosystem & Tooling: Kali Linux | Wireshark | Nmap | Burp Suite | Metasploit | Exif | Bettercap |  Bloodhound | Wazuh SIEM | Splunk |
-Python 3 | C++
+**Ecosystem & Tooling:** Kali Linux | Wireshark | Nmap | Burp Suite | Metasploit | Scapy | Bettercap | Bloodhound | Wazuh SIEM | Splunk | CyberChef | YARA | Microsoft Sentinel | Social-Engineer Toolkit (SET) | cURL | Flask | Python 3
 
 ⚙️ Arsenal & Projects
 Tactical scripts, defensive architecture, and tools designed to streamline security assessments and continuous monitoring.
@@ -107,7 +106,13 @@ Cybergen 5-Day Ethical Hacking Boot Camp – GDGOC PIEAC
 
 * **TryHackMe Profile:** Top 15% Globally | 45+ Labs Completed
   * *Focus Areas:* Practical penetration testing, infrastructure auditing, network tracking, and OSINT methodology .
+### 🎓 Detailed Hands-On Training Breakdown (TryHackMe)
 
+*   **OSINT & Social Media Intelligence (SOCMINT):** Successfully executed advanced tracking, profiling, and digital footprinting investigations across complex labs (*OhSINT*, *Sakura Room*, *KaffeeSec - SoMeSINT*).
+*   **Digital Forensics & Incident Response (DFIR):** Performed Windows Registry forensics, extracted artifacts, triaged security events in *Microsoft Sentinel*, and analyzed large-scale raw packet captures (`.pcap`) for Command and Control (C2) channel detection.
+*   **Vulnerability Exploitation & Logic Flaws:** Chained flaws from initial reconnaissance to full server compromise, including IDOR validation, Prompt Injection attacks on autonomous AI agents, Cross-Site Scripting (XSS), and Race Conditions.
+*   **Defensive Engineering & Tooling:** Configured custom *YARA* rules for signature-based anomaly detection and utilized *CyberChef* for advanced data decoding and cryptographic analysis during incident triage.
+*   **Specialized Infrastructure Security:** Explored threat landscapes unique to cloud environments (*AWS S3 Bucket enumeration*), *Docker Container escapes*, and Operational Technology (*ICS/Modbus protocol vulnerability exploitation*).
 ---
 🤝 Connect With Me
 💼 LinkedIn
