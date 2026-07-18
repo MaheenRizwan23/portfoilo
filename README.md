@@ -16,7 +16,9 @@ My approach balances technical persistence with active community engagement—hu
 📊 SIEM & Log Analysis     🫙 Container Security          🏗️ ICS / SCADA Security     ☁️ Cloud (AWS) Security
 🔍 Incident Response       🪟 Windows/Linux Forensics    🍯 Honeypot Engineering     🐚 Python Scripting(Basic)
 
-**Ecosystem & Tooling:** Kali Linux | Wireshark | Nmap | Burp Suite | Metasploit | Scapy | Bettercap | Bloodhound | Wazuh SIEM | Splunk | CyberChef | YARA | Microsoft Sentinel | Social-Engineer Toolkit (SET) | cURL | Flask | Python 3
+Ecosystem & Tooling: Kali Linux | Wireshark | Nmap | Burp Suite | Metasploit | Scapy | Bettercap | NetExec (nxc) | BloodHound | SharpHound | Impacket | bloodyAD | Samba-Tool | Wazuh SIEM | Splunk | CyberChef | YARA | Microsoft Sentinel | Social-Engineer Toolkit (SET) | cURL | Flask | Python 3 | Apache Server | Windows Server 2022
+
+---
 
 ⚙️ Arsenal & Projects
 Tactical scripts, defensive architecture, and tools designed to streamline security assessments and continuous monitoring.
@@ -24,11 +26,17 @@ Tactical scripts, defensive architecture, and tools designed to streamline secur
 🎥 CCTV Security Infrastructure Enhancement & Hardening
 Led a security hardening initiative targeting a live CCTV video infrastructure. Identified and remediated 10+ critical configuration flaws and access control weaknesses to eliminate unauthorized exposure surfaces. Developed and integrated a specialized monitoring ecosystem featuring a 3D infrastructure blueprint and architectural flow diagrams to map and defend the physical-to-digital network perimeter.
 
+🛠️ Custom Python File Integrity Monitor (FIM)
+Engineered a host-based File Integrity Monitoring (FIM) security utility featuring a custom GUI to track directory stability in real time. Built with a Python engine and an SQLite backend, the tool actively monitors specified system paths (e.g., /home/kali/) and runs cryptographic hashing loops (MD5) to instantly alert administrators of unauthorized Create, Update, or Delete (CUD) folder anomalies within a tight 2-3 second polling cycle.
+
+🔑 Public Key Infrastructure (PKI) & Apache Web Hardening Lab
+Architected an end-to-end sandbox Public Key Infrastructure (PKI) deployment patterned after SEED Security Labs methodologies to evaluate Data Loss Prevention (DLP) monitoring baselines. Configured an Apache-based multi-page web platform, generated a self-signed Root Certificate Authority (CA) certificate, and handled manual browser ingestion validation to achieve an authenticated, trusted HTTPS session state.
+
 🛡️ Wazuh SIEM End-to-End Deployment & Log Analysis
 Engineered an end-to-end continuous monitoring pipeline by deploying Wazuh SIEM. Managed full-cycle implementation including host agent enrollment, targeted rule tuning, and centralized dashboard compilation. Conducted deep-packet and log analysis across multi-host network events to eliminate visibility gaps, map systemic anomalies, and establish near real-time alerting for critical, previously undetected indicators of compromise (IoCs).
 
 📊 Splunk SIEM Infrastructure Deployment
-Architected and configured a localized Splunk environment tailored for centralized log collection, parsing, and advanced security data visibility. Structured ingestion pipelines to index system event metrics, enabling rapid query capabilities, custom threat hunting workflows, and high-fidelity operational dash-boards.
+Architected and configured a localized Splunk environment tailored for centralized log collection, parsing, and advanced security data visibility. Structured ingestion pipelines to index system event metrics, enabling rapid query capabilities, custom threat hunting workflows, and high-fidelity operational dashboards.
 
 🔍 Acheron
 An AI-powered web reconnaissance and security posture assessment engine. It fingerprints infrastructure layers (50+ structural signatures), validates missing security headers, analyzes cookie protections, flags high-risk open ports, and generates dark-mode HTML reports. It merges disparate scanning cycles into a single action.
@@ -54,21 +62,24 @@ Tech Stack: Kali Linux • Fern WiFi Cracker • Aircrack-ng
 A modular Capture The Flag (CTF) hosting platform featuring secure user registration, live scoreboard analytics, and dynamic deployment architectures for custom security challenges.
 
 Tech Stack: Flask • Python • Web Security • Lab Infrastructure
-
-💼 Work Experience & Engagements
+---
+💼 Experience & Professional Engagements
 🛡️ Ethical Hacker Intern | Secure Dev Labs
 June 2026 – July 2026
-
-Conducted structured network security exercises focusing on Active Directory (AD) attack paths, privilege escalation, and internal pivoting.
-
-Executed advanced web service enumeration and vulnerabilities assessments on localized lab assets.
-
-📈 Technical Analyst Intern | SNSKIES / DESC
+---
+📈 Technical Analyst (3-Month Advanced Security Training) | SNSKIES / DESC Mardan
 April 2026 – Present
 
-Generated tactical threat intelligence reports detailing ransomware footprints, malicious network traffic vectors, and Indicators of Compromise (IoCs).
+Enterprise Active Directory Exploitation: Deployed comprehensive domain controllers using Windows Server 2022 and Windows 10 Enterprise to simulate corporate network compromises using vulnerabilities found in custom lab environments (such as the Butler machine).
 
-Performed deep-packet analysis and protocol diagnostics utilizing Wireshark to investigate simulated network security incidents.
+Identity Infrastructure Attack Paths: Mapped privilege escalation paths and structural domain security gaps ("GenericAll" permissions) utilizing BloodHound graph databases and SharpHound collectors.
+
+Offensive Tactics & Lateral Movement: Mastered technical mechanics of the offensive attack chain, executing proxychained password spraying, SMB interaction via smbclient, credential stuffing, and domain harvesting using NetExec (nxc), Impacket, and CrackMapExec.
+
+Low-Level Object Abuse: Practiced targeted object manipulation and exploitation within Active Directory/Samba environments using specialized utilities including bloodyAD and samba-tool.
+
+Corporate Governance & Business Literacy: Attended expert workshops covering regulatory frameworks for entrepreneurship within Pakistan, including SECP business registration compliance and corporate taxation mechanics.
+---
 
 🏴‍☠️ CTF Competitor & Lab Designer | Team Base102
 July 2025 – Present
@@ -76,8 +87,8 @@ July 2025 – Present
 Active participant in regional cybersecurity exercises, including Cyber Streak CTF 2025 and NineByte CTF 2026.
 
 Deployed defensive sandbox honeypots to capture, log, and study threat actor authentication behaviors and brute-force indicators.
-
 ---
+
 🎖️ Leadership & Impact
 👥 Female Coordinator @ Technology & Innovation Society (AWKUM)
 AWKUM Students Council
@@ -98,7 +109,6 @@ Ethical Hacking & Pentest Mastery – OCSALY Academy
 
 Advent of Cyber 2025 | Web Forensics & Malware Analysis – TryHackMe
 
-Cybergen 5-Day Ethical Hacking Boot Camp – GDGOC PIEAC
 ---
 ---
 
