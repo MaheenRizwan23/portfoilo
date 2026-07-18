@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Maheen Rizwan // Offensive Security Analyst</title>
+<meta name="description" content="Maheen Rizwan — Offensive Security Analyst, Web Pentesting, Network Exploitation, OSINT, Digital Forensics." />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  :root{
+    --bg: #0B0F19;
+    --bg-raised: #10141f;
+    --card: #131826;
+    --card-border: #202838;
+    --mint: #00FF66;
+    --mint-dim: #10B981;
+    --mint-glow: rgba(0,255,102,0.18);
+    --text-hi: #F2F5F7;
+    --text-mid: #A9B3C1;
+    --text-low: #5C6675;
+  }
+  *{box-sizing:border-box;}
+  html,body{background:var(--bg);}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--text-hi);
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0,255,102,0.08), transparent),
+      var(--bg);
+    overflow-x:hidden;
+  }
+  .mono{font-family:'JetBrains Mono',monospace;}
+
+  /* scanline grid backdrop */
+  .grid-overlay{
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:
+      linear-gradient(rgba(0,255,102,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,102,0.035) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent 75%);
+  }
+
+  .glass{
+    background: rgba(19,24,38,0.65);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .card{
+    background: linear-gradient(180deg, var(--card), rgba(19,24,38,0.4));
+    border: 1px solid var(--card-border);
+    transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+  }
+  .card:hover{
+    border-color: rgba(0,255,102,0.35);
+    box-shadow: 0 0 0 1px rgba(0,255,102,0.08), 0 20px 40px -20px rgba(0,255,102,0.15);
+    transform: translateY(-3px);
+  }
+
+  .tag{
+    font-family:'JetBrains Mono',monospace;
+    border:1px solid var(--card-border);
+    background: rgba(255,255,255,0.02);
+    transition: all .25s ease;
+  }
+  .tag:hover{
+    border-color: var(--mint);
+    color: var(--mint);
+    background: var(--mint-glow);
+    box-shadow: 0 0 18px -4px rgba(0,255,102,0.5);
+    transform: translateY(-2px);
+  }
+
+  .accent-text{ color: var(--mint); }
+  .accent-text-dim{ color: var(--mint-dim); }
+
+  .btn-glow{
+    box-shadow: 0 0 0 1px rgba(0,255,102,0.4), 0 0 24px -6px rgba(0,255,102,0.6);
+  }
+
+  /* blinking cursor */
+  .cursor::after{
+    content:'▌';
+    color: var(--mint);
+    animation: blink 1s steps(1) infinite;
+    margin-left: 2px;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  /* fade-up entry animation */
+  .reveal{
+    opacity:0;
+    transform: translateY(18px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in{
+    opacity:1;
+    transform: translateY(0);
+  }
+
+  /* nav link underline */
+  .nav-link{ position:relative; }
+  .nav-link::after{
+    content:''; position:absolute; left:0; bottom:-4px; width:0; height:1px;
+    background: var(--mint); transition: width .25s ease;
+  }
+  .nav-link:hover::after, .nav-link.active::after{ width:100%; }
+  .nav-link.active{ color: var(--mint); }
+
+  /* tab switch */
+  .tab-btn{ transition: all .25s ease; }
+  .tab-btn.active{
+    color: var(--bg);
+    background: var(--mint);
+    box-shadow: 0 0 20px -4px rgba(0,255,102,0.7);
+  }
+  .tab-panel{ display:none; }
+  .tab-panel.active{ display:block; }
+
+  /* accordion */
+  .accordion-body{
+    max-height:0; overflow:hidden; transition: max-height .4s ease, padding .4s ease;
+  }
+  .accordion-item.open .accordion-body{ max-height:600px; }
+  .accordion-item.open .chevron{ transform: rotate(180deg); }
+  .chevron{ transition: transform .3s ease; }
+
+  ::-webkit-scrollbar{ width:9px; }
+  ::-webkit-scrollbar-track{ background:var(--bg); }
+  ::-webkit-scrollbar-thumb{ background:#1b2233; border-radius:8px; }
+  ::-webkit-scrollbar-thumb:hover{ background: var(--mint-dim); }
+
+  ::selection{ background: var(--mint); color:#0B0F19; }
+
+  .section-eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing: .15em;
+  }
+
+  .divider-line{
+    height:1px;
+    background: linear-gradient(90deg, transparent, rgba(0,255,102,0.35), transparent);
+  }
+
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline: 2px solid var(--mint); outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ transition:none; opacity:1; transform:none; }
+    .cursor::after{ animation:none; }
+  }
+</style>
+</head>
+<body class="min-h-screen">
+
+<div class="grid-overlay"></div>
+
+<!-- ============ NAVBAR ============ -->
+<header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+  <nav class="glass mx-auto mt-3 max-w-6xl rounded-2xl px-5 py-3 flex items-center justify-between">
+    <a href="#home" class="mono font-bold text-lg tracking-tight flex items-center gap-2">
+      <span class="accent-text">&gt;</span><span class="text-white">maheen</span><span class="accent-text">.rizwan</span><span class="cursor"></span>
+    </a>
+    <div class="hidden md:flex items-center gap-7 mono text-sm text-[var(--text-mid)]">
+      <a href="#skills" class="nav-link">skills</a>
+      <a href="#work" class="nav-link">arsenal_&_work</a>
+      <a href="#leadership" class="nav-link">leadership</a>
+      <a href="#certs" class="nav-link">certs</a>
+      <a href="#thm" class="nav-link">tryhackme</a>
+      <a href="#contact" class="nav-link">contact</a>
+    </div>
+    <a href="#contact" class="hidden md:inline-flex mono text-xs px-4 py-2 rounded-lg border border-[var(--mint)] text-[var(--mint)] hover:bg-[var(--mint)] hover:text-[#0B0F19] transition-all btn-glow">
+      connect_()
+    </a>
+    <button id="menu-btn" class="md:hidden text-white" aria-label="Toggle menu" aria-expanded="false">
+      <i data-lucide="menu" class="w-6 h-6"></i>
+    </button>
+  </nav>
+  <div id="mobile-menu" class="hidden md:hidden mx-4 mt-2 glass rounded-2xl px-5 py-4 flex flex-col gap-4 mono text-sm text-[var(--text-mid)]">
+    <a href="#skills" class="nav-link">skills</a>
+    <a href="#work" class="nav-link">arsenal_&_work</a>
+    <a href="#leadership" class="nav-link">leadership</a>
+    <a href="#certs" class="nav-link">certs</a>
+    <a href="#thm" class="nav-link">tryhackme</a>
+    <a href="#contact" class="nav-link">contact</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="relative min-h-screen flex items-center pt-28 pb-16 px-5 z-10">
+  <div class="max-w-6xl mx-auto w-full grid md:grid-cols-5 gap-10 items-center">
+    <div class="md:col-span-3 reveal">
+      <div class="mono text-xs inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--card-border)] text-[var(--mint)] mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-[var(--mint)] animate-pulse"></span>
+        session_active :: rawalpindi_channel_secure
+      </div>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight text-white">
+        Mapping attack surfaces.<br>
+        <span class="accent-text">Exploiting</span> the gaps.<br>
+        Scripting the fix.
+      </h1>
+      <p class="mt-6 text-[var(--text-mid)] text-base sm:text-lg max-w-xl leading-relaxed">
+        I'm <span class="text-white font-semibold">Maheen Rizwan</span>, an Offensive Security Analyst and BS Cybersecurity student at AWKUM, Pakistan. I specialize in web application security auditing, network exploitation, and building modular Python tools that automate reconnaissance.
+      </p>
+      <blockquote class="mono text-sm text-[var(--text-low)] mt-6 border-l-2 border-[var(--mint-dim)] pl-4 italic">
+        "Understand the network baseline, exploit the visibility gaps, then script the fix."
+      </blockquote>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="#work" class="mono text-sm px-5 py-3 rounded-xl bg-[var(--mint)] text-[#0B0F19] font-bold hover:brightness-110 transition btn-glow">
+          view_arsenal()
+        </a>
+        <a href="#contact" class="mono text-sm px-5 py-3 rounded-xl border border-[var(--card-border)] text-white hover:border-[var(--mint)] hover:text-[var(--mint)] transition">
+          initiate_contact()
+        </a>
+      </div>
+    </div>
+
+    <div class="md:col-span-2 reveal" style="transition-delay:.15s">
+      <div class="card rounded-2xl p-5 mono text-xs sm:text-sm leading-relaxed shadow-2xl">
+        <div class="flex items-center gap-1.5 mb-4">
+          <span class="w-2.5 h-2.5 rounded-full bg-red-500/70"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/70"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-green-500/70"></span>
+          <span class="ml-3 text-[var(--text-low)]">recon.sh — target: self</span>
+        </div>
+        <div id="terminal-lines" class="space-y-1.5 text-[var(--text-mid)] min-h-[220px]"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-6xl mx-auto px-5"><div class="divider-line"></div></div>
+
+<!-- ============ SKILL MAP ============ -->
+<section id="skills" class="relative z-10 py-20 px-5">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal">
+      <p class="section-eyebrow accent-text-dim text-xs mb-2">01 // capability_matrix</p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-10">Skill Map</h2>
+    </div>
+
+    <div class="flex flex-wrap gap-3 mb-12 reveal">
+      <span class="tag px-4 py-2 rounded-lg text-sm cursor-default">🌐 Web Pentesting</span>
+      <span class="tag px-4 py-2 rounded-lg text-sm cursor-default">🛡️ Network Exploitation</span>
+      <span class="tag px-4 py-2 rounded-lg text-sm cursor-default">🕵️ OSINT & SOCMINT</span>
+      <span class="tag px-4 py-2 rounded-lg text-sm cursor-default">📻 Wireless Auditing</span>
+      <span class="tag px-4 py-2 rounded-lg text-sm cursor-default">📊 SIEM & Log Analysis</span>
+      <span class="tag px-4 py-2 rounded-lg text-sm cursor-default">🫙 Container Security</span>
+      <span class="tag px-4 py-2 rounded-lg text-sm cursor-default">🏗️ ICS / SCADA Security</span>
+      <span class="tag px-4 py-2 rounded-lg text-sm cursor-default">☁️ Cloud (AWS) Security</span>
+      <span class="tag px-4 py-2 rounded-lg text-sm cursor-default">🔍 Incident Response</span>
+      <span class="tag px-4 py-2 rounded-lg text-sm cursor-default">🪟 Windows/Linux Forensics</span>
+      <span class="tag px-4 py-2 rounded-lg text-sm cursor-default">🍯 Honeypot Engineering</span>
+      <span class="tag px-4 py-2 rounded-lg text-sm cursor-default">🐚 Python Scripting & Automation</span>
+    </div>
+
+    <div class="reveal">
+      <p class="mono text-xs text-[var(--text-low)] mb-4 tracking-widest">ECOSYSTEM_&_TOOLING</p>
+      <div class="flex flex-wrap gap-2.5">
+        <!-- tool badges injected via JS -->
+        <span id="tool-badges-target"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-6xl mx-auto px-5"><div class="divider-line"></div></div>
+
+<!-- ============ WORK / ARSENAL TABS ============ -->
+<section id="work" class="relative z-10 py-20 px-5">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal">
+      <p class="section-eyebrow accent-text-dim text-xs mb-2">02 // deployments</p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-8">Arsenal, Projects & Work</h2>
+    </div>
+
+    <div class="reveal flex gap-2 p-1.5 rounded-xl border border-[var(--card-border)] w-fit mb-10 mono text-sm">
+      <button class="tab-btn active px-5 py-2.5 rounded-lg text-white" data-tab="projects">Arsenal &amp; Projects</button>
+      <button class="tab-btn px-5 py-2.5 rounded-lg text-white" data-tab="experience">Work Experience</button>
+    </div>
+
+    <!-- PROJECTS PANEL -->
+    <div class="tab-panel active" id="panel-projects">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="text-2xl mb-3">🎥</div>
+          <h3 class="font-bold text-white mb-2">CCTV Security Infrastructure Hardening</h3>
+          <p class="text-sm text-[var(--text-mid)] leading-relaxed">Led a hardening initiative on live CCTV video infrastructure, remediating 10+ critical config flaws and access weaknesses. Built a monitoring ecosystem with a 3D infrastructure blueprint mapping the physical-to-digital perimeter.</p>
+        </div>
+
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="text-2xl mb-3">🛡️</div>
+          <h3 class="font-bold text-white mb-2">Wazuh SIEM End-to-End Deployment</h3>
+          <p class="text-sm text-[var(--text-mid)] leading-relaxed">Engineered a continuous monitoring pipeline via Wazuh SIEM — host enrollment, rule tuning, dashboards. Deep-packet and log analysis across multi-host events to surface real-time IoCs.</p>
+        </div>
+
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="text-2xl mb-3">📊</div>
+          <h3 class="font-bold text-white mb-2">Splunk SIEM Infrastructure Deployment</h3>
+          <p class="text-sm text-[var(--text-mid)] leading-relaxed">Architected a localized Splunk environment for centralized log collection and parsing — custom threat-hunting workflows and high-fidelity operational dashboards.</p>
+        </div>
+
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="text-2xl mb-3">🔍</div>
+          <h3 class="font-bold text-white mb-2">Acheron</h3>
+          <p class="text-sm text-[var(--text-mid)] leading-relaxed mb-4">AI-powered web recon and security posture engine — fingerprints 50+ structural signatures, validates security headers, flags high-risk ports, generates dark-mode HTML reports.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag px-2.5 py-1 rounded text-xs">Python</span>
+            <span class="tag px-2.5 py-1 rounded text-xs">AI Engines</span>
+            <span class="tag px-2.5 py-1 rounded text-xs">Vulnerability Assessment</span>
+          </div>
+        </div>
+
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="text-2xl mb-3">🗺️</div>
+          <h3 class="font-bold text-white mb-2">Exif Metadata Viewer</h3>
+          <p class="text-sm text-[var(--text-mid)] leading-relaxed mb-4">AI-assisted OSINT & digital forensics portal that parses uploaded images for hidden metadata — GPS coordinates, device footprints, timestamps.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag px-2.5 py-1 rounded text-xs">Python</span>
+            <span class="tag px-2.5 py-1 rounded text-xs">Flask</span>
+            <span class="tag px-2.5 py-1 rounded text-xs">OSINT Tools</span>
+          </div>
+        </div>
+
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="text-2xl mb-3">🍯</div>
+          <h3 class="font-bold text-white mb-2">Port-Based Honeyport</h3>
+          <p class="text-sm text-[var(--text-mid)] leading-relaxed mb-4">Lightweight defensive trap that binds to open ports and flags raw TCP handshakes from unauthorized scanners in real time.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag px-2.5 py-1 rounded text-xs">Python 3</span>
+            <span class="tag px-2.5 py-1 rounded text-xs">Socket Library</span>
+            <span class="tag px-2.5 py-1 rounded text-xs">Netcat (Sim.)</span>
+          </div>
+        </div>
+
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="text-2xl mb-3">📻</div>
+          <h3 class="font-bold text-white mb-2">Wireless WPA Auditing Simulation</h3>
+          <p class="text-sm text-[var(--text-mid)] leading-relaxed mb-4">Ethical wireless assessment against WPA handshakes — credential harvesting, handshake capture, and dictionary-based resilience evaluation.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag px-2.5 py-1 rounded text-xs">Kali Linux</span>
+            <span class="tag px-2.5 py-1 rounded text-xs">Fern WiFi Cracker</span>
+            <span class="tag px-2.5 py-1 rounded text-xs">Aircrack-ng</span>
+          </div>
+        </div>
+
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="text-2xl mb-3">🏴‍☠️</div>
+          <h3 class="font-bold text-white mb-2">Cypherra</h3>
+          <p class="text-sm text-[var(--text-mid)] leading-relaxed mb-4">Modular CTF hosting platform — secure registration, live scoreboard analytics, and dynamic deployment architecture for custom challenges.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag px-2.5 py-1 rounded text-xs">Flask</span>
+            <span class="tag px-2.5 py-1 rounded text-xs">Python</span>
+            <span class="tag px-2.5 py-1 rounded text-xs">Lab Infrastructure</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- EXPERIENCE PANEL -->
+    <div class="tab-panel" id="panel-experience">
+      <div class="space-y-6">
+
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <h3 class="font-bold text-white text-lg">🛡️ Ethical Hacker Intern <span class="text-[var(--text-low)] font-normal">— Secure Dev Labs</span></h3>
+            <span class="mono text-xs accent-text">Jun 2026 – Jul 2026</span>
+          </div>
+          <ul class="text-sm text-[var(--text-mid)] space-y-1.5 list-disc list-inside leading-relaxed">
+            <li>Conducted structured network security exercises focusing on Active Directory (AD) attack paths, privilege escalation, and internal pivoting.</li>
+            <li>Executed advanced web service enumeration and vulnerability assessments on localized lab assets.</li>
+          </ul>
+        </div>
+
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <h3 class="font-bold text-white text-lg">📈 Technical Analyst Intern <span class="text-[var(--text-low)] font-normal">— SNSKIES / DESC</span></h3>
+            <span class="mono text-xs accent-text">Apr 2026 – Present</span>
+          </div>
+          <ul class="text-sm text-[var(--text-mid)] space-y-1.5 list-disc list-inside leading-relaxed">
+            <li>Generated tactical threat intelligence reports detailing ransomware footprints, malicious traffic vectors, and IoCs.</li>
+            <li>Performed deep-packet analysis and protocol diagnostics using Wireshark on simulated network security incidents.</li>
+          </ul>
+        </div>
+
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <h3 class="font-bold text-white text-lg">🏴‍☠️ CTF Competitor & Lab Designer <span class="text-[var(--text-low)] font-normal">— Team Base102</span></h3>
+            <span class="mono text-xs accent-text">Jul 2025 – Present</span>
+          </div>
+          <ul class="text-sm text-[var(--text-mid)] space-y-1.5 list-disc list-inside leading-relaxed">
+            <li>Active participant in regional cybersecurity exercises, including Cyber Streak CTF 2025 and NineByte CTF 2026.</li>
+            <li>Deployed defensive sandbox honeypots to capture, log, and study threat actor authentication and brute-force behavior.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-6xl mx-auto px-5"><div class="divider-line"></div></div>
+
+<!-- ============ LEADERSHIP ============ -->
+<section id="leadership" class="relative z-10 py-20 px-5">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal">
+      <p class="section-eyebrow accent-text-dim text-xs mb-2">03 // impact_log</p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-10">Leadership &amp; Impact</h2>
+    </div>
+    <div class="card rounded-2xl p-8 reveal">
+      <h3 class="font-bold text-white text-lg mb-1">👥 Female Coordinator @ Technology & Innovation Society (AWKUM)</h3>
+      <p class="mono text-xs text-[var(--text-low)] mb-5">AWKUM Students Council</p>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div>
+          <p class="mono text-xs accent-text mb-1.5 tracking-wide">TECH_ADVOCACY</p>
+          <p class="text-sm text-[var(--text-mid)] leading-relaxed">Organized large-scale educational tracks, including a GitHub Masterclass for 100+ students, to build campus-wide tech literacy.</p>
+        </div>
+        <div>
+          <p class="mono text-xs accent-text mb-1.5 tracking-wide">DIVERSITY_IN_TECH</p>
+          <p class="text-sm text-[var(--text-mid)] leading-relaxed">Dedicated to mentoring, inspiring, and empowering female students to step into high-impact fields like Cybersecurity, AI, and Data Science.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-6xl mx-auto px-5"><div class="divider-line"></div></div>
+
+<!-- ============ CERTIFICATIONS ============ -->
+<section id="certs" class="relative z-10 py-20 px-5">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal">
+      <p class="section-eyebrow accent-text-dim text-xs mb-2">04 // credentials</p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-10">Certifications &amp; Training</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-4">
+      <div class="card rounded-xl p-5 flex items-start gap-3 reveal">
+        <i data-lucide="badge-check" class="w-5 h-5 accent-text mt-0.5 shrink-0"></i>
+        <div>
+          <p class="text-white font-semibold text-sm">CAPIJ — Certified API Hacking Junior</p>
+          <p class="text-xs text-[var(--text-low)] mono mt-1">The XSS Rat · Jul 2026</p>
+        </div>
+      </div>
+      <div class="card rounded-xl p-5 flex items-start gap-3 reveal">
+        <i data-lucide="badge-check" class="w-5 h-5 accent-text mt-0.5 shrink-0"></i>
+        <div>
+          <p class="text-white font-semibold text-sm">Vulnerability Assessment Achievement</p>
+          <p class="text-xs text-[var(--text-low)] mono mt-1">CCSDF · Apr 2026</p>
+        </div>
+      </div>
+      <div class="card rounded-xl p-5 flex items-start gap-3 reveal">
+        <i data-lucide="badge-check" class="w-5 h-5 accent-text mt-0.5 shrink-0"></i>
+        <div>
+          <p class="text-white font-semibold text-sm">CCNA (Pt. 1) — Introduction to Networks</p>
+          <p class="text-xs text-[var(--text-low)] mono mt-1">Cisco Academy, UET Peshawar · Oct 2025</p>
+        </div>
+      </div>
+      <div class="card rounded-xl p-5 flex items-start gap-3 reveal">
+        <i data-lucide="badge-check" class="w-5 h-5 accent-text mt-0.5 shrink-0"></i>
+        <div>
+          <p class="text-white font-semibold text-sm">Ethical Hacking & Pentest Mastery</p>
+          <p class="text-xs text-[var(--text-low)] mono mt-1">OCSALY Academy</p>
+        </div>
+      </div>
+      <div class="card rounded-xl p-5 flex items-start gap-3 reveal">
+        <i data-lucide="badge-check" class="w-5 h-5 accent-text mt-0.5 shrink-0"></i>
+        <div>
+          <p class="text-white font-semibold text-sm">Advent of Cyber 2025 — Web Forensics & Malware Analysis</p>
+          <p class="text-xs text-[var(--text-low)] mono mt-1">TryHackMe</p>
+        </div>
+      </div>
+      <div class="card rounded-xl p-5 flex items-start gap-3 reveal">
+        <i data-lucide="badge-check" class="w-5 h-5 accent-text mt-0.5 shrink-0"></i>
+        <div>
+          <p class="text-white font-semibold text-sm">Cybergen 5-Day Ethical Hacking Boot Camp</p>
+          <p class="text-xs text-[var(--text-low)] mono mt-1">GDGOC PIEAC</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-6xl mx-auto px-5"><div class="divider-line"></div></div>
+
+<!-- ============ TRYHACKME ============ -->
+<section id="thm" class="relative z-10 py-20 px-5">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal">
+      <p class="section-eyebrow accent-text-dim text-xs mb-2">05 // platform_standings</p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">TryHackMe Training Breakdown</h2>
+    </div>
+
+    <div class="card rounded-2xl p-6 mb-10 flex flex-wrap gap-8 reveal">
+      <div>
+        <p class="text-3xl font-extrabold accent-text mono">Top 15%</p>
+        <p class="text-xs text-[var(--text-low)] mono mt-1">GLOBAL_RANKING</p>
+      </div>
+      <div>
+        <p class="text-3xl font-extrabold accent-text mono">45+</p>
+        <p class="text-xs text-[var(--text-low)] mono mt-1">LABS_COMPLETED</p>
+      </div>
+      <div class="flex-1 min-w-[200px]">
+        <p class="text-xs text-[var(--text-low)] mono mb-1">FOCUS_AREAS</p>
+        <p class="text-sm text-[var(--text-mid)]">Practical penetration testing, infrastructure auditing, network tracking, and OSINT methodology.</p>
+      </div>
+    </div>
+
+    <div id="accordion" class="space-y-3 reveal">
+
+      <div class="accordion-item card rounded-xl overflow-hidden open">
+        <button class="acc-toggle w-full flex items-center justify-between px-6 py-5 text-left">
+          <span class="font-semibold text-white text-sm sm:text-base">🕵️ OSINT & Social Media Intelligence (SOCMINT)</span>
+          <i data-lucide="chevron-down" class="chevron w-5 h-5 accent-text shrink-0"></i>
+        </button>
+        <div class="accordion-body px-6">
+          <p class="text-sm text-[var(--text-mid)] pb-6 leading-relaxed">Successfully executed advanced tracking, profiling, and digital footprinting investigations across complex labs (OhSINT, Sakura Room, KaffeeSec - SoMeSINT).</p>
+        </div>
+      </div>
+
+      <div class="accordion-item card rounded-xl overflow-hidden">
+        <button class="acc-toggle w-full flex items-center justify-between px-6 py-5 text-left">
+          <span class="font-semibold text-white text-sm sm:text-base">🧬 Digital Forensics & Incident Response (DFIR)</span>
+          <i data-lucide="chevron-down" class="chevron w-5 h-5 accent-text shrink-0"></i>
+        </button>
+        <div class="accordion-body px-6">
+          <p class="text-sm text-[var(--text-mid)] pb-6 leading-relaxed">Performed Windows Registry forensics, extracted artifacts, triaged security events in Microsoft Sentinel, and analyzed large-scale raw packet captures (.pcap) for Command and Control (C2) channel detection.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item card rounded-xl overflow-hidden">
+        <button class="acc-toggle w-full flex items-center justify-between px-6 py-5 text-left">
+          <span class="font-semibold text-white text-sm sm:text-base">🐛 Vulnerability Exploitation & Logic Flaws</span>
+          <i data-lucide="chevron-down" class="chevron w-5 h-5 accent-text shrink-0"></i>
+        </button>
+        <div class="accordion-body px-6">
+          <p class="text-sm text-[var(--text-mid)] pb-6 leading-relaxed">Chained flaws from initial reconnaissance to full server compromise, including IDOR validation, Prompt Injection attacks on autonomous AI agents, Cross-Site Scripting (XSS), and Race Conditions.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item card rounded-xl overflow-hidden">
+        <button class="acc-toggle w-full flex items-center justify-between px-6 py-5 text-left">
+          <span class="font-semibold text-white text-sm sm:text-base">⚙️ Defensive Engineering & Tooling</span>
+          <i data-lucide="chevron-down" class="chevron w-5 h-5 accent-text shrink-0"></i>
+        </button>
+        <div class="accordion-body px-6">
+          <p class="text-sm text-[var(--text-mid)] pb-6 leading-relaxed">Configured custom YARA rules for signature-based anomaly detection and utilized CyberChef for advanced data decoding and cryptographic analysis during incident triage.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item card rounded-xl overflow-hidden">
+        <button class="acc-toggle w-full flex items-center justify-between px-6 py-5 text-left">
+          <span class="font-semibold text-white text-sm sm:text-base">🏗️ Specialized Infrastructure Security</span>
+          <i data-lucide="chevron-down" class="chevron w-5 h-5 accent-text shrink-0"></i>
+        </button>
+        <div class="accordion-body px-6">
+          <p class="text-sm text-[var(--text-mid)] pb-6 leading-relaxed">Explored threat landscapes unique to cloud environments (AWS S3 Bucket enumeration), Docker Container escapes, and Operational Technology (ICS/Modbus protocol vulnerability exploitation).</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="max-w-6xl mx-auto px-5"><div class="divider-line"></div></div>
+
+<!-- ============ CONTACT / FOOTER ============ -->
+<section id="contact" class="relative z-10 py-24 px-5">
+  <div class="max-w-4xl mx-auto text-center reveal">
+    <p class="section-eyebrow accent-text-dim text-xs mb-3">06 // open_channel</p>
+    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Let's connect</h2>
+    <p class="text-[var(--text-mid)] max-w-xl mx-auto mb-10">Open to collaborations, internships, and CTF teams. Reach out through either channel below.</p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="https://www.linkedin.com/in/maheen-rizwan-7a2651363" target="_blank" rel="noopener noreferrer"
+         class="mono text-sm px-6 py-3.5 rounded-xl border border-[var(--card-border)] text-white hover:border-[var(--mint)] hover:text-[var(--mint)] transition flex items-center gap-2">
+        <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+      </a>
+      <a href="https://github.com/cybi-ladin/" target="_blank" rel="noopener noreferrer"
+         class="mono text-sm px-6 py-3.5 rounded-xl bg-[var(--mint)] text-[#0B0F19] font-bold hover:brightness-110 transition btn-glow flex items-center gap-2">
+        <i data-lucide="github" class="w-4 h-4"></i> GitHub
+      </a>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto mt-20 pt-8 border-t border-[var(--card-border)] flex flex-col sm:flex-row justify-between items-center gap-3 mono text-xs text-[var(--text-low)]">
+    <p>&copy; 2026 Maheen Rizwan. All rights reserved.</p>
+    <p>root@security:~$ <span class="accent-text">connection_secure</span></p>
+  </div>
+</section>
+
+<script>
+  lucide.createIcons();
+
+  // mobile menu
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => {
+    const isHidden = mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', String(isHidden));
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  // navbar active link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+  sections.forEach(s => navObserver.observe(s));
+
+  // reveal on scroll
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // tabs
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = { projects: document.getElementById('panel-projects'), experience: document.getElementById('panel-experience') };
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[btn.dataset.tab].classList.add('active');
+    });
+  });
+
+  // accordion
+  document.querySelectorAll('.acc-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.accordion-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // terminal boot sequence in hero
+  const lines = [
+    '$ whoami',
+    '> maheen_rizwan // offensive_security_analyst',
+    '$ locate --student',
+    '> BS Cybersecurity @ AWKUM, Pakistan',
+    '$ scan --focus',
+    '> web_pentest | network_exploit | osint | recon_automation',
+    '$ status',
+    '> mentoring women into offensive security [ACTIVE]'
+  ];
+  const termEl = document.getElementById('terminal-lines');
+  let li = 0, ci = 0;
+  function typeLine() {
+    if (li >= lines.length) return;
+    const div = document.createElement('div');
+    div.className = lines[li].startsWith('$') ? 'text-white' : 'text-[var(--text-mid)] pl-3';
+    termEl.appendChild(div);
+    const text = lines[li];
+    ci = 0;
+    const interval = setInterval(() => {
+      div.textContent = text.slice(0, ci + 1);
+      ci++;
+      if (ci >= text.length) {
+        clearInterval(interval);
+        li++;
+        setTimeout(typeLine, 180);
+      }
+    }, text.startsWith('$') ? 40 : 14);
+  }
+  setTimeout(typeLine, 500);
+
+  // tool badges
+  const tools = ['Kali Linux','Wireshark','Nmap','Burp Suite','Metasploit','Scapy','Bettercap','Bloodhound','Wazuh SIEM','Splunk','CyberChef','YARA','Microsoft Sentinel','Social-Engineer Toolkit','cURL','Flask','Python 3'];
+  const toolContainer = document.getElementById('tool-badges-target');
+  toolContainer.outerHTML = tools.map(t => `<span class="tag px-3 py-1.5 rounded-md text-xs cursor-default">${t}</span>`).join(' ');
+
+  // navbar shrink on scroll
+  const navHeader = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      navHeader.querySelector('nav').style.boxShadow = '0 8px 30px -10px rgba(0,0,0,0.5)';
+    } else {
+      navHeader.querySelector('nav').style.boxShadow = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>
