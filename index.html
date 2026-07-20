@@ -80,6 +80,15 @@
     box-shadow: 0 0 0 1px rgba(255,51,51,0.4), 0 0 24px -6px rgba(255,51,51,0.6);
   }
 
+  /* blinking cursor */
+  .cursor::after{
+    content:'▌';
+    color: var(--cyber-red);
+    animation: blink 1s steps(1) infinite;
+    margin-left: 2px;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
   /* fade-up entry animation */
   .reveal{
     opacity:0;
@@ -131,8 +140,8 @@
   .project-card:hover .view-link{ color: var(--cyber-red); transform: translateX(3px); }
 
   /* project detail modal */
-  #project-modal{ transition: opacity .25s ease; opacity:0; pointer-events:none; }
-  #project-modal.open{ opacity:1; pointer-events:auto; }
+  #project-modal{ transition: opacity .25s ease; opacity:0; }
+  #project-modal.open{ opacity:1; }
   #modal-panel{ transform: translateY(24px) scale(.97); transition: transform .3s cubic-bezier(.2,.8,.2,1); }
   #project-modal.open #modal-panel{ transform: translateY(0) scale(1); }
 
@@ -181,23 +190,26 @@
 
 <!-- ============ NAVBAR ============ -->
 <header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
-  <nav class="glass mx-auto mt-3 max-w-6xl rounded-2xl px-5 py-3 flex items-center justify-between">
-        <div class="hidden md:flex items-center gap-7 mono text-sm text-[var(--text-mid)]">
-      <a href="#skills" class="nav-link">Skills</a>
-      <a href="#work" class="nav-link">Projects and Work</a>
-      <a href="#leadership" class="nav-link">Leadership Certs</a>
-      <a href="#thm" class="nav-link">TryHackMe</a>
+  <nav class="glass mx-auto mt-3 max-w-6xl rounded-2xl px-5 py-3 flex items-center justify-center">
+    <div class="hidden md:flex items-center gap-7 mono text-sm text-[var(--text-mid)]">
+      <a href="#skills" class="nav-link">skills</a>
+      <a href="#work" class="nav-link">arsenal_&_work</a>
+      <a href="#leadership" class="nav-link">leadership</a>
+      <a href="#certs" class="nav-link">certs</a>
+      <a href="#thm" class="nav-link">tryhackme</a>
+    
     </div>
     <button id="menu-btn" class="md:hidden text-white ml-auto" aria-label="Toggle menu" aria-expanded="false">
       <i data-lucide="menu" class="w-6 h-6"></i>
     </button>
   </nav>
   <div id="mobile-menu" class="hidden md:hidden mx-4 mt-2 glass rounded-2xl px-5 py-4 flex flex-col gap-4 mono text-sm text-[var(--text-mid)]">
-    <a href="#skills" class="nav-link-mobile">Skills</a>
-    <a href="#work" class="nav-link-mobile">Projects and Work</a>
-    <a href="#leadership" class="nav-link-mobile">Leadership</a>
-    <a href="#Certs" class="nav-link-mobile">Certs</a>
-    <a href="#thm" class="nav-link-mobile">TryHackMe</a>
+    <a href="#skills" class="nav-link">skills</a>
+    <a href="#work" class="nav-link">arsenal_&_work</a>
+    <a href="#leadership" class="nav-link">leadership</a>
+    <a href="#certs" class="nav-link">certs</a>
+    <a href="#thm" class="nav-link">tryhackme</a>
+    <a href="#contact" class="nav-link">contact</a>
   </div>
 </header>
 
@@ -207,7 +219,7 @@
     <div class="md:col-span-3 reveal">
       <div class="mono text-xs inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--card-border)] text-[var(--cyber-red)] mb-6">
         <span class="w-1.5 h-1.5 rounded-full bg-[var(--cyber-red)] animate-pulse"></span>
-        session_active :: Nowshera_channel_secure
+        session_active :: channel_secure
       </div>
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight text-white">
         Mapping attack surfaces.<br>
@@ -222,7 +234,7 @@
       </blockquote>
       <div class="mt-8 flex flex-wrap gap-4">
         <a href="#work" class="mono text-sm px-5 py-3 rounded-xl bg-[var(--cyber-red)] text-[var(--bg)] font-bold hover:brightness-110 transition btn-glow">
-          view_Projects ()
+          view_arsenal()
         </a>
         <a href="#contact" class="mono text-sm px-5 py-3 rounded-xl border border-[var(--card-border)] text-white hover:border-[var(--cyber-red)] hover:text-[var(--cyber-red)] transition">
           initiate_contact()
@@ -272,7 +284,7 @@
     </div>
 
     <div class="reveal">
-      <p class="mono text-xs text-[var(--text-low)] mb-4 tracking-widest">ECOSYSTEM_&amp;_TOOLING</p>
+      <p class="mono text-xs text-[var(--text-low)] mb-4 tracking-widest">ECOSYSTEM_&_TOOLING</p>
       <div id="tool-badges-target" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-10 gap-y-0"></div>
     </div>
   </div>
@@ -280,16 +292,16 @@
 
 <div class="max-w-6xl mx-auto px-5"><div class="divider-line"></div></div>
 
-<!-- ============ WORK / PROJECTS TABS ============ -->
+<!-- ============ WORK / ARSENAL TABS ============ -->
 <section id="work" class="relative z-10 py-20 px-5">
   <div class="max-w-6xl mx-auto">
     <div class="reveal">
       <p class="section-eyebrow accent-text-dim text-xs mb-2">02 // deployments</p>
-      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-8">Projects and Work</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-8">Arsenal, Projects & Work</h2>
     </div>
 
     <div class="reveal flex gap-2 p-1.5 rounded-xl border border-[var(--card-border)] w-fit mb-10 mono text-sm">
-      <button class="tab-btn active px-5 py-2.5 rounded-lg text-white" data-tab="projects">Projects and Work</button>
+      <button class="tab-btn active px-5 py-2.5 rounded-lg text-white" data-tab="projects">Arsenal &amp; Projects</button>
       <button class="tab-btn px-5 py-2.5 rounded-lg text-white" data-tab="experience">Work Experience</button>
     </div>
 
@@ -348,9 +360,9 @@
   <div class="max-w-6xl mx-auto">
     <div class="reveal">
       <p class="section-eyebrow accent-text-dim text-xs mb-2">03 // impact_log</p>
-      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-10">Leadership Certs</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-10">Leadership &amp; Impact</h2>
     </div>
-    <div class="card rounded-2xl p-8 reveal mb-12">
+    <div class="card rounded-2xl p-8 reveal">
       <h3 class="font-bold text-white text-lg mb-1">Female Coordinator @ Technology & Innovation Society (AWKUM)</h3>
       <p class="mono text-xs text-[var(--text-low)] mb-5">AWKUM Students Council</p>
       <div class="grid sm:grid-cols-2 gap-6">
@@ -364,9 +376,17 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
 
+<div class="max-w-6xl mx-auto px-5"><div class="divider-line"></div></div>
+
+<!-- ============ CERTIFICATIONS ============ -->
+<section id="certs" class="relative z-10 py-20 px-5">
+  <div class="max-w-6xl mx-auto">
     <div class="reveal">
-      <h3 class="text-2xl font-bold text-white mb-6">Certifications &amp; Training</h3>
+      <p class="section-eyebrow accent-text-dim text-xs mb-2">04 // credentials</p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-10">Certifications &amp; Training</h2>
     </div>
     <div class="grid sm:grid-cols-2 gap-4">
       <div class="card rounded-xl p-5 flex items-start gap-3 reveal">
@@ -422,7 +442,7 @@
   <div class="max-w-6xl mx-auto">
     <div class="reveal">
       <p class="section-eyebrow accent-text-dim text-xs mb-2">05 // platform_standings</p>
-      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">TryHackMe</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">TryHackMe Training Breakdown</h2>
     </div>
 
     <div class="card rounded-2xl p-6 mb-10 flex flex-wrap gap-8 reveal">
@@ -583,74 +603,7 @@
 <script>
   lucide.createIcons();
 
-  // ============ BINARY MATRIX BACKGROUND ============
-  const canvas = document.getElementById('binary-matrix');
-  const ctx = canvas.getContext('2d');
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
-
-  const chars = '01';
-  const fontSize = 14;
-  let columns = Math.floor(canvas.width / fontSize);
-  const drops = Array(columns).fill(1);
-
-  function drawMatrix() {
-    ctx.fillStyle = 'rgba(5, 5, 8, 0.08)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#FF3333';
-    ctx.font = fontSize + 'px JetBrains Mono';
-    for (let i = 0; i < drops.length; i++) {
-      const text = chars.charAt(Math.floor(Math.random() * chars.length));
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
-      drops[i]++;
-    }
-  }
-  setInterval(drawMatrix, 50);
-
-  // ============ MOBILE MENU & NAVBAR ============
-  const menuBtn = document.getElementById('menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  menuBtn.addEventListener('click', () => {
-    const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
-    menuBtn.setAttribute('aria-expanded', !expanded);
-    mobileMenu.classList.toggle('hidden');
-  });
-  document.querySelectorAll('.nav-link-mobile').forEach(link => {
-    link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-  });
-
-  // ============ SCROLL REVEAL ============
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        entry.target.classList.add('in');
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // ============ TOOL BADGES ============
-  const tools = [
-    'Nmap', 'Burp Suite', 'Metasploit', 'Wireshark', 'Hydra', 
-    'John the Ripper', 'Gobuster', 'Splunk', 'Docker', 'Git & GitHub', 
-    'Python', 'Linux / Bash'
-  ];
-  const toolContainer = document.getElementById('tool-badges-target');
-  tools.forEach(tool => {
-    const row = document.createElement('div');
-    row.className = 'bullet-row';
-    row.innerHTML = `<span class="arrow">&gt;</span><span class="label text-sm text-[var(--text-mid)]">${tool}</span>`;
-    toolContainer.appendChild(row);
-  });
-
-  // ============ PROJECTS TABS & DYNAMIC GRID ============
+  // ============ PROJECT DATA ============
   const projects = [
     {
       id: 'cctv', icon: '🎥', title: 'CCTV Security Infrastructure Hardening',
@@ -674,122 +627,270 @@
       id: 'acheron', icon: '🔍', title: 'Acheron',
       teaser: 'AI-powered web recon and security posture engine — fingerprints 50+ structural signatures, validates security headers, flags high-risk ports, generates dark-mode HTML reports.',
       full: 'AI-powered web recon and security posture engine — fingerprints 50+ structural signatures, validates security headers, flags high-risk ports, generates dark-mode HTML reports.',
-      tags: ['AI Recon', 'Security Posture', 'Python']
+      tags: ['Python', 'AI Engines', 'Vulnerability Assessment']
+    },
+    {
+      id: 'exif', icon: '🗺️', title: 'Exif Metadata Viewer',
+      teaser: 'AI-assisted OSINT & digital forensics portal that parses uploaded images for hidden metadata — GPS coordinates, device footprints, timestamps.',
+      full: 'AI-assisted OSINT & digital forensics portal that parses uploaded images for hidden metadata — GPS coordinates, device footprints, timestamps.',
+      tags: ['Python', 'Flask', 'OSINT Tools']
+    },
+    {
+      id: 'honeyport', icon: '🍯', title: 'Port-Based Honeyport',
+      teaser: 'Lightweight defensive trap that binds to open ports and flags raw TCP handshakes from unauthorized scanners in real time.',
+      full: 'Lightweight defensive trap that binds to open ports and flags raw TCP handshakes from unauthorized scanners in real time.',
+      tags: ['Python 3', 'Socket Library', 'Netcat (Sim.)']
+    },
+    {
+      id: 'wireless', icon: '📻', title: 'Wireless WPA Auditing Simulation',
+      teaser: 'Ethical wireless assessment against WPA handshakes — credential harvesting, handshake capture, and dictionary-based resilience evaluation.',
+      full: 'Ethical wireless assessment against WPA handshakes — credential harvesting, handshake capture, and dictionary-based resilience evaluation.',
+      tags: ['Kali Linux', 'Fern WiFi Cracker', 'Aircrack-ng']
+    },
+    {
+      id: 'cypherra', icon: '🏴‍☠️', title: 'Cypherra',
+      teaser: 'Modular CTF hosting platform — secure registration, live scoreboard analytics, and dynamic deployment architecture for custom challenges.',
+      full: 'Modular CTF hosting platform — secure registration, live scoreboard analytics, and dynamic deployment architecture for custom challenges.',
+      tags: ['Flask', 'Python', 'Lab Infrastructure']
     }
   ];
 
   const projectGrid = document.getElementById('project-grid');
-  projects.forEach(p => {
-    const card = document.createElement('div');
-    card.className = 'card rounded-2xl p-6 flex flex-col justify-between project-card reveal';
-    card.innerHTML = `
-      <div>
-        <div class="text-3xl mb-4">${p.icon}</div>
-        <h3 class="font-bold text-white text-lg mb-2">${p.title}</h3>
-        <p class="text-sm text-[var(--text-mid)] leading-relaxed mb-6">${p.teaser}</p>
-      </div>
-      <div>
-        <div class="flex flex-wrap gap-1.5 mb-5">
-          ${p.tags.map(t => `<span class="tag text-xs px-2.5 py-1 rounded-md text-[var(--text-mid)]">${t}</span>`).join('')}
-        </div>
-        <div class="mono text-xs view-link inline-flex items-center gap-1">
-          view_operational_log() &rarr;
-        </div>
-      </div>
+  projectGrid.innerHTML = projects.map(p => `
+    <button type="button" class="project-card card rounded-2xl p-6 text-left reveal" data-id="${p.id}">
+      <div class="text-2xl mb-3">${p.icon}</div>
+      <h3 class="font-bold text-white mb-2">${p.title}</h3>
+      <p class="text-sm text-[var(--text-mid)] leading-relaxed">${p.teaser}</p>
+      <span class="view-link mono text-xs mt-4 inline-block">&gt; view_details()</span>
+    </button>
+  `).join('');
+
+  // ============ PROJECT MODAL ============
+  const modal = document.getElementById('project-modal');
+  const modalBackdrop = document.getElementById('modal-backdrop');
+  const modalBody = document.getElementById('modal-body');
+  const modalCloseBtn = document.getElementById('modal-close');
+  let lastFocusedEl = null;
+
+  function openProjectModal(id) {
+    const p = projects.find(x => x.id === id);
+    if (!p) return;
+    modalBody.innerHTML = `
+      <div class="text-3xl mb-4">${p.icon}</div>
+      <p class="mono text-xs accent-text-dim tracking-widest mb-2">project_file :: ${p.id}</p>
+      <h3 id="modal-title" class="text-2xl font-bold text-white mb-5">${p.title}</h3>
+      <p class="text-sm text-[var(--text-mid)] leading-relaxed mb-7">${p.full}</p>
+      <p class="mono text-xs text-[var(--text-low)] tracking-widest mb-3">TECH_STACK</p>
+      <div class="flex flex-wrap gap-2">${p.tags.map(t => `<span class="tag px-3 py-1.5 rounded-md text-xs">${t}</span>`).join('')}</div>
     `;
-    card.addEventListener('click', () => openModal(p));
-    projectGrid.appendChild(card);
+    lastFocusedEl = document.activeElement;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => modal.classList.add('open'));
+    modalCloseBtn.focus();
+  }
+
+  function closeProjectModal() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }, 250);
+    if (lastFocusedEl) lastFocusedEl.focus();
+  }
+
+  projectGrid.addEventListener('click', (e) => {
+    const card = e.target.closest('.project-card');
+    if (card) openProjectModal(card.dataset.id);
+  });
+  modalCloseBtn.addEventListener('click', closeProjectModal);
+  modalBackdrop.addEventListener('click', closeProjectModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeProjectModal();
   });
 
-  // Tab switching logic
+  // mobile menu
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => {
+    const isHidden = mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', String(isHidden));
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  // navbar active link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+  sections.forEach(s => navObserver.observe(s));
+
+  // reveal on scroll
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // tabs
   const tabBtns = document.querySelectorAll('.tab-btn');
-  const tabPanels = document.querySelectorAll('.tab-panel');
+  const panels = { projects: document.getElementById('panel-projects'), experience: document.getElementById('panel-experience') };
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       tabBtns.forEach(b => b.classList.remove('active'));
-      tabPanels.forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
-      document.getElementById('panel-' + btn.getAttribute('data-tab')).classList.add('active');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[btn.dataset.tab].classList.add('active');
     });
   });
 
-  // Modal logic
-  const modal = document.getElementById('project-modal');
-  const modalBackdrop = document.getElementById('modal-backdrop');
-  const modalClose = document.getElementById('modal-close');
-  const modalBody = document.getElementById('modal-body');
-
-  function openModal(p) {
-    modalBody.innerHTML = `
-      <div class="flex items-center gap-3 mb-4">
-        <span class="text-4xl">${p.icon}</span>
-        <div>
-          <p class="mono text-xs accent-text">operational_summary</p>
-          <h3 id="modal-title" class="text-xl sm:text-2xl font-bold text-white">${p.title}</h3>
-        </div>
-      </div>
-      <p class="text-[var(--text-mid)] text-sm sm:text-base leading-relaxed mb-6">${p.full}</p>
-      <div class="flex flex-wrap gap-2 mb-8">
-        ${p.tags.map(t => `<span class="tag text-xs px-3 py-1 rounded-md text-white">${t}</span>`).join('')}
-      </div>
-      <div class="mono text-xs text-[var(--text-low)] border-t border-[var(--card-border)] pt-4">
-        status :: verified_deployment // checksum_ok
-      </div>
-    `;
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    setTimeout(() => modal.classList.add('open'), 10);
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    modal.classList.remove('open');
-    setTimeout(() => {
-      modal.classList.remove('flex');
-      modal.classList.add('hidden');
-      document.body.style.overflow = '';
-    }, 250);
-  }
-
-  modalClose.addEventListener('click', closeModal);
-  modalBackdrop.addEventListener('click', closeModal);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-  // ============ ACCORDION ============ -->
+  // accordion
   document.querySelectorAll('.acc-toggle').forEach(btn => {
     btn.addEventListener('click', () => {
-      const item = btn.parentElement;
-      const isOpen = item.classList.contains('open');
+      const item = btn.closest('.accordion-item');
+      const wasOpen = item.classList.contains('open');
       document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
-      if(!isOpen) item.classList.add('open');
+      if (!wasOpen) item.classList.add('open');
     });
   });
 
-  // ============ CONTACT FORM HANDLER ============ -->
-  const contactForm = document.getElementById('contact-form');
-  const contactSuccess = document.getElementById('cf-success');
-  contactForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const name = document.getElementById('cf-name').value.trim();
-    const email = document.getElementById('cf-email').value.trim();
-    const phone = document.getElementById('cf-phone').value.trim();
-    const message = document.getElementById('cf-message').value.trim();
-    const status = document.getElementById('cf-status');
+  // tool ecosystem
+  const tools = ['Kali Linux', 'Wireshark', 'Nmap', 'Burp Suite', 'Metasploit', 'Scapy', 'Bettercap', 'Bloodhound', 'Wazuh SIEM', 'Splunk', 'CyberChef', 'YARA', 'Microsoft Sentinel', 'Social-Engineer Toolkit', 'cURL', 'Flask', 'Python 3'];
+  document.getElementById('tool-badges-target').innerHTML = tools.map(t => `
+    <div class="bullet-row">
+      <span class="arrow">&gt;</span>
+      <span class="label text-sm text-[var(--text-mid)]">${t}</span>
+    </div>
+  `).join('');
 
-    if(!name || !email || !message) {
-      status.style.color = '#FF3333';
-      status.textContent = 'error :: please fill in all mandatory fields.';
+  // navbar shrink on scroll
+  const navHeader = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      navHeader.querySelector('nav').style.boxShadow = '0 8px 30px -10px rgba(0,0,0,0.5)';
+    } else {
+      navHeader.querySelector('nav').style.boxShadow = 'none';
+    }
+  });
+
+  // ============ CONTACT FORM — mailto: submission ============
+  const OWNER_EMAIL = 'maheenrizwan23@gmail.com';
+
+  const cfForm = document.getElementById('contact-form');
+  const cfStatus = document.getElementById('cf-status');
+  const cfSubmit = document.getElementById('cf-submit');
+  const cfSuccess = document.getElementById('cf-success');
+
+  cfForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!cfForm.checkValidity()) {
+      cfForm.reportValidity();
       return;
     }
 
-    status.textContent = '';
-    const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'N/A'}\n\nMessage:\n${message}`);
-    
-    window.location.href = `mailto:maheenrizwan@example.com?subject=${subject}&body=${body}`;
-    contactForm.parentElement.classList.add('hidden');
-    contactSuccess.classList.remove('hidden');
+    const name = document.getElementById('cf-name').value.trim();
+    const phone = document.getElementById('cf-phone').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const message = document.getElementById('cf-message').value.trim();
+
+    cfSubmit.disabled = true;
+    cfStatus.innerHTML = '';
+
+    const steps = [
+      'validating payload... [OK]',
+      'encrypting channel... [OK]',
+      'routing to inbox... [OK]'
+    ];
+    steps.forEach((line, i) => {
+      setTimeout(() => {
+        const div = document.createElement('div');
+        div.textContent = line;
+        div.className = 'accent-text-dim';
+        cfStatus.appendChild(div);
+      }, i * 380);
+    });
+
+    setTimeout(() => {
+      const subject = encodeURIComponent(`Portfolio contact — ${name}`);
+      const bodyLines = [
+        `Name: ${name}`,
+        phone ? `Phone: ${phone}` : null,
+        `Email: ${email}`,
+        '',
+        message
+      ].filter(v => v !== null).join('\n');
+      const mailBody = encodeURIComponent(bodyLines);
+      window.location.href = `mailto:${OWNER_EMAIL}?subject=${subject}&body=${mailBody}`;
+
+      cfForm.classList.add('hidden');
+      cfSuccess.classList.remove('hidden');
+      cfSubmit.disabled = false;
+    }, steps.length * 380 + 300);
   });
+
+  // ============ BINARY MATRIX BACKGROUND CANVAS ============
+  (function () {
+    const canvas = document.getElementById('binary-matrix');
+    const ctx = canvas.getContext('2d');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const fontSize = 15;
+    let cols, drops;
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      cols = Math.max(1, Math.floor(canvas.width / fontSize));
+      drops = new Array(cols).fill(0).map(() => Math.floor(Math.random() * -50));
+    }
+    resize();
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resize, 150);
+    });
+
+    function drawFrame() {
+      ctx.fillStyle = 'rgba(5,5,8,0.08)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.font = fontSize + 'px "JetBrains Mono", monospace';
+      for (let i = 0; i < cols; i++) {
+        const char = Math.random() > 0.5 ? '1' : '0';
+        ctx.fillStyle = Math.random() > 0.92 ? '#FF3333' : '#C82323';
+        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    if (reducedMotion) {
+      drawFrame();
+      return;
+    }
+    setInterval(drawFrame, 45);
+  })();
 </script>
+
 </body>
 </html>
