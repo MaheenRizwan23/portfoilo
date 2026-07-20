@@ -80,15 +80,6 @@
     box-shadow: 0 0 0 1px rgba(255,51,51,0.4), 0 0 24px -6px rgba(255,51,51,0.6);
   }
 
-  /* blinking cursor */
-  .cursor::after{
-    content:'▌';
-    color: var(--cyber-red);
-    animation: blink 1s steps(1) infinite;
-    margin-left: 2px;
-  }
-  @keyframes blink{ 50%{ opacity:0; } }
-
   /* fade-up entry animation */
   .reveal{
     opacity:0;
@@ -140,8 +131,8 @@
   .project-card:hover .view-link{ color: var(--cyber-red); transform: translateX(3px); }
 
   /* project detail modal */
-  #project-modal{ transition: opacity .25s ease; opacity:0; }
-  #project-modal.open{ opacity:1; }
+  #project-modal{ transition: opacity .25s ease; opacity:0; pointer-events:none; }
+  #project-modal.open{ opacity:1; pointer-events:auto; }
   #modal-panel{ transform: translateY(24px) scale(.97); transition: transform .3s cubic-bezier(.2,.8,.2,1); }
   #project-modal.open #modal-panel{ transform: translateY(0) scale(1); }
 
@@ -190,7 +181,8 @@
 
 <!-- ============ NAVBAR ============ -->
 <header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
-  <nav class="glass mx-auto mt-3 max-w-6xl rounded-2xl px-5 py-3 flex items-center justify-center">
+  <nav class="glass mx-auto mt-3 max-w-6xl rounded-2xl px-5 py-3 flex items-center justify-between">
+    <a href="#home" class="mono text-xs font-bold text-white tracking-widest uppercase">maheen_rizwan.sh</a>
     <div class="hidden md:flex items-center gap-7 mono text-sm text-[var(--text-mid)]">
       <a href="#skills" class="nav-link">Skills</a>
       <a href="#work" class="nav-link">Projects and Work</a>
@@ -202,10 +194,10 @@
     </button>
   </nav>
   <div id="mobile-menu" class="hidden md:hidden mx-4 mt-2 glass rounded-2xl px-5 py-4 flex flex-col gap-4 mono text-sm text-[var(--text-mid)]">
-    <a href="#skills" class="nav-link">Skills</a>
-    <a href="#work" class="nav-link">Projects and Work</a>
-    <a href="#leadership" class="nav-link">Leadership Certs</a>
-    <a href="#thm" class="nav-link">TryHackMe</a>
+    <a href="#skills" class="nav-link-mobile">Skills</a>
+    <a href="#work" class="nav-link-mobile">Projects and Work</a>
+    <a href="#leadership" class="nav-link-mobile">Leadership Certs</a>
+    <a href="#thm" class="nav-link-mobile">TryHackMe</a>
   </div>
 </header>
 
@@ -591,7 +583,74 @@
 <script>
   lucide.createIcons();
 
-  // ============ PROJECT DATA ============
+  // ============ BINARY MATRIX BACKGROUND ============
+  const canvas = document.getElementById('binary-matrix');
+  const ctx = canvas.getContext('2d');
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  const chars = '01';
+  const fontSize = 14;
+  let columns = Math.floor(canvas.width / fontSize);
+  const drops = Array(columns).fill(1);
+
+  function drawMatrix() {
+    ctx.fillStyle = 'rgba(5, 5, 8, 0.08)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#FF3333';
+    ctx.font = fontSize + 'px JetBrains Mono';
+    for (let i = 0; i < drops.length; i++) {
+      const text = chars.charAt(Math.floor(Math.random() * chars.length));
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+  setInterval(drawMatrix, 50);
+
+  // ============ MOBILE MENU & NAVBAR ============
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => {
+    const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+    menuBtn.setAttribute('aria-expanded', !expanded);
+    mobileMenu.classList.toggle('hidden');
+  });
+  document.querySelectorAll('.nav-link-mobile').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+  });
+
+  // ============ SCROLL REVEAL ============
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('in');
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ============ TOOL BADGES ============
+  const tools = [
+    'Nmap', 'Burp Suite', 'Metasploit', 'Wireshark', 'Hydra', 
+    'John the Ripper', 'Gobuster', 'Splunk', 'Docker', 'Git & GitHub', 
+    'Python', 'Linux / Bash'
+  ];
+  const toolContainer = document.getElementById('tool-badges-target');
+  tools.forEach(tool => {
+    const row = document.createElement('div');
+    row.className = 'bullet-row';
+    row.innerHTML = `<span class="arrow">&gt;</span><span class="label text-sm text-[var(--text-mid)]">${tool}</span>`;
+    toolContainer.appendChild(row);
+  });
+
+  // ============ PROJECTS TABS & DYNAMIC GRID ============
   const projects = [
     {
       id: 'cctv', icon: '🎥', title: 'CCTV Security Infrastructure Hardening',
@@ -618,6 +677,119 @@
       tags: ['AI Recon', 'Security Posture', 'Python']
     }
   ];
+
+  const projectGrid = document.getElementById('project-grid');
+  projects.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'card rounded-2xl p-6 flex flex-col justify-between project-card reveal';
+    card.innerHTML = `
+      <div>
+        <div class="text-3xl mb-4">${p.icon}</div>
+        <h3 class="font-bold text-white text-lg mb-2">${p.title}</h3>
+        <p class="text-sm text-[var(--text-mid)] leading-relaxed mb-6">${p.teaser}</p>
+      </div>
+      <div>
+        <div class="flex flex-wrap gap-1.5 mb-5">
+          ${p.tags.map(t => `<span class="tag text-xs px-2.5 py-1 rounded-md text-[var(--text-mid)]">${t}</span>`).join('')}
+        </div>
+        <div class="mono text-xs view-link inline-flex items-center gap-1">
+          view_operational_log() &rarr;
+        </div>
+      </div>
+    `;
+    card.addEventListener('click', () => openModal(p));
+    projectGrid.appendChild(card);
+  });
+
+  // Tab switching logic
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabPanels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + btn.getAttribute('data-tab')).classList.add('active');
+    });
+  });
+
+  // Modal logic
+  const modal = document.getElementById('project-modal');
+  const modalBackdrop = document.getElementById('modal-backdrop');
+  const modalClose = document.getElementById('modal-close');
+  const modalBody = document.getElementById('modal-body');
+
+  function openModal(p) {
+    modalBody.innerHTML = `
+      <div class="flex items-center gap-3 mb-4">
+        <span class="text-4xl">${p.icon}</span>
+        <div>
+          <p class="mono text-xs accent-text">operational_summary</p>
+          <h3 id="modal-title" class="text-xl sm:text-2xl font-bold text-white">${p.title}</h3>
+        </div>
+      </div>
+      <p class="text-[var(--text-mid)] text-sm sm:text-base leading-relaxed mb-6">${p.full}</p>
+      <div class="flex flex-wrap gap-2 mb-8">
+        ${p.tags.map(t => `<span class="tag text-xs px-3 py-1 rounded-md text-white">${t}</span>`).join('')}
+      </div>
+      <div class="mono text-xs text-[var(--text-low)] border-t border-[var(--card-border)] pt-4">
+        status :: verified_deployment // checksum_ok
+      </div>
+    `;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    setTimeout(() => modal.classList.add('open'), 10);
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    setTimeout(() => {
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }, 250);
+  }
+
+  modalClose.addEventListener('click', closeModal);
+  modalBackdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // ============ ACCORDION ============ -->
+  document.querySelectorAll('.acc-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ============ CONTACT FORM HANDLER ============ -->
+  const contactForm = document.getElementById('contact-form');
+  const contactSuccess = document.getElementById('cf-success');
+  contactForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('cf-name').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const phone = document.getElementById('cf-phone').value.trim();
+    const message = document.getElementById('cf-message').value.trim();
+    const status = document.getElementById('cf-status');
+
+    if(!name || !email || !message) {
+      status.style.color = '#FF3333';
+      status.textContent = 'error :: please fill in all mandatory fields.';
+      return;
+    }
+
+    status.textContent = '';
+    const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'N/A'}\n\nMessage:\n${message}`);
+    
+    window.location.href = `mailto:maheenrizwan@example.com?subject=${subject}&body=${body}`;
+    contactForm.parentElement.classList.add('hidden');
+    contactSuccess.classList.remove('hidden');
+  });
 </script>
 </body>
 </html>
