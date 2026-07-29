@@ -543,37 +543,41 @@
         <p class="mono text-xs text-[var(--text-low)] tracking-widest">secure_channel :: encrypted_form</p>
       </div>
 
-      <form id="contact-form" novalidate>
-        <div class="mb-5">
-          <label for="cf-name" class="mono text-xs text-[var(--text-low)] tracking-widest block mb-2">FULL_NAME</label>
-          <input id="cf-name" name="name" type="text" required
-            class="form-input w-full rounded-lg px-4 py-3 text-sm text-white" placeholder="Jane Doe">
-        </div>
-        <div class="grid sm:grid-cols-2 gap-5 mb-5">
-          <div>
-            <label for="cf-phone" class="mono text-xs text-[var(--text-low)] tracking-widest block mb-2">PHONE_NUMBER</label>
-            <input id="cf-phone" name="phone" type="tel"
-              class="form-input w-full rounded-lg px-4 py-3 text-sm text-white" placeholder="+92 300 0000000">
-          </div>
-          <div>
-            <label for="cf-email" class="mono text-xs text-[var(--text-low)] tracking-widest block mb-2">EMAIL_ADDRESS</label>
-            <input id="cf-email" name="email" type="email" required
-              class="form-input w-full rounded-lg px-4 py-3 text-sm text-white" placeholder="you@domain.com">
-          </div>
-        </div>
-        <div class="mb-6">
-          <label for="cf-message" class="mono text-xs text-[var(--text-low)] tracking-widest block mb-2">QUERY_/_MESSAGE</label>
-          <textarea id="cf-message" name="message" rows="5" required
-            class="form-input w-full rounded-lg px-4 py-3 text-sm text-white resize-none" placeholder="Tell me about the opportunity, project, or CTF..."></textarea>
-        </div>
+      <form action="https://api.web3forms.com/submit" method="POST" id="contact-form">
+  <input type="hidden" name="access_key" value="01df4a8c-7f6a-4722-899f-b2202a8aabc5">
 
-        <div id="cf-status" class="mono text-xs space-y-1 mb-5 min-h-[1.25rem]"></div>
+  <div class="mb-5">
+    <label for="cf-name" class="mono text-xs text-[var(--text-low)] tracking-widest block mb-2">FULL_NAME</label>
+    <input id="cf-name" name="name" type="text" required
+      class="form-input w-full rounded-lg px-4 py-3 text-sm text-white" placeholder="Jane Doe">
+  </div>
+  
+  <div class="grid sm:grid-cols-2 gap-5 mb-5">
+    <div>
+      <label for="cf-phone" class="mono text-xs text-[var(--text-low)] tracking-widest block mb-2">PHONE_NUMBER</label>
+      <input id="cf-phone" name="phone" type="tel"
+        class="form-input w-full rounded-lg px-4 py-3 text-sm text-white" placeholder="+92 300 0000000">
+    </div>
+    <div>
+      <label for="cf-email" class="mono text-xs text-[var(--text-low)] tracking-widest block mb-2">EMAIL_ADDRESS</label>
+      <input id="cf-email" name="email" type="email" required
+        class="form-input w-full rounded-lg px-4 py-3 text-sm text-white" placeholder="you@domain.com">
+    </div>
+  </div>
+  
+  <div class="mb-6">
+    <label for="cf-message" class="mono text-xs text-[var(--text-low)] tracking-widest block mb-2">QUERY_/_MESSAGE</label>
+    <textarea id="cf-message" name="message" rows="5" required
+      class="form-input w-full rounded-lg px-4 py-3 text-sm text-white resize-none" placeholder="Tell me about the opportunity, project, or CTF..."></textarea>
+  </div>
 
-        <button type="submit" id="cf-submit"
-          class="btn-glow mono text-sm w-full px-5 py-3.5 rounded-xl bg-[var(--cyber-red)] text-[var(--bg)] font-bold hover:brightness-110 transition disabled:opacity-60">
-          send_transmission()
-        </button>
-      </form>
+  <div id="cf-status" class="mono text-xs space-y-1 mb-5 min-h-[1.25rem]"></div>
+
+  <button type="submit" id="cf-submit"
+    class="btn-glow mono text-sm w-full px-5 py-3.5 rounded-xl bg-[var(--cyber-red)] text-[var(--bg)] font-bold hover:brightness-110 transition disabled:opacity-60">
+    send_transmission()
+  </button>
+</form>
 
       <div id="cf-success" class="hidden text-center py-6">
         <i data-lucide="check-circle" class="w-8 h-8 accent-text mx-auto mb-3"></i>
@@ -605,6 +609,24 @@
 
   // ============ PROJECT DATA ============
   const projects = [
+     {
+      id: 'acheron', icon: '🔍', title: 'Acheron',
+      teaser: 'AI-powered web recon and security posture engine — fingerprints 50+ structural signatures, validates security headers, flags high-risk ports, generates dark-mode HTML reports.',
+      full: 'AI-powered web recon and security posture engine — fingerprints 50+ structural signatures, validates security headers, flags high-risk ports, generates dark-mode HTML reports.',
+      tags: ['Python', 'AI Engines', 'Vulnerability Assessment']
+    },
+    {
+      id: 'honeyport', icon: '🍯', title: 'Port-Based Honeyport',
+      teaser: 'Lightweight defensive trap that binds to open ports and flags raw TCP handshakes from unauthorized scanners in real time.',
+      full: 'Lightweight defensive trap that binds to open ports and flags raw TCP handshakes from unauthorized scanners in real time.',
+      tags: ['Python 3', 'Socket Library', 'Netcat (Sim.)']
+    },
+      {
+      id: 'wireless', icon: '📻', title: 'Wireless WPA Auditing Simulation',
+      teaser: 'Ethical wireless assessment against WPA handshakes — credential harvesting, handshake capture, and dictionary-based resilience evaluation.',
+      full: 'Ethical wireless assessment against WPA handshakes — credential harvesting, handshake capture, and dictionary-based resilience evaluation.',
+      tags: ['Kali Linux', 'Fern WiFi Cracker', 'Aircrack-ng']
+    },
     {
       id: 'cctv', icon: '🎥', title: 'CCTV Security Infrastructure Hardening',
       teaser: 'Led a hardening initiative on live CCTV video infrastructure, remediating 10+ critical config flaws and access weaknesses.',
@@ -623,30 +645,15 @@
       full: 'Architected a localized Splunk environment for centralized log collection and parsing — custom threat-hunting workflows and high-fidelity operational dashboards.',
       tags: ['Splunk', 'Threat Hunting', 'Log Collection']
     },
-    {
-      id: 'acheron', icon: '🔍', title: 'Acheron',
-      teaser: 'AI-powered web recon and security posture engine — fingerprints 50+ structural signatures, validates security headers, flags high-risk ports, generates dark-mode HTML reports.',
-      full: 'AI-powered web recon and security posture engine — fingerprints 50+ structural signatures, validates security headers, flags high-risk ports, generates dark-mode HTML reports.',
-      tags: ['Python', 'AI Engines', 'Vulnerability Assessment']
-    },
+   
     {
       id: 'exif', icon: '🗺️', title: 'Exif Metadata Viewer',
       teaser: 'AI-assisted OSINT & digital forensics portal that parses uploaded images for hidden metadata — GPS coordinates, device footprints, timestamps.',
       full: 'AI-assisted OSINT & digital forensics portal that parses uploaded images for hidden metadata — GPS coordinates, device footprints, timestamps.',
       tags: ['Python', 'Flask', 'OSINT Tools']
     },
-    {
-      id: 'honeyport', icon: '🍯', title: 'Port-Based Honeyport',
-      teaser: 'Lightweight defensive trap that binds to open ports and flags raw TCP handshakes from unauthorized scanners in real time.',
-      full: 'Lightweight defensive trap that binds to open ports and flags raw TCP handshakes from unauthorized scanners in real time.',
-      tags: ['Python 3', 'Socket Library', 'Netcat (Sim.)']
-    },
-    {
-      id: 'wireless', icon: '📻', title: 'Wireless WPA Auditing Simulation',
-      teaser: 'Ethical wireless assessment against WPA handshakes — credential harvesting, handshake capture, and dictionary-based resilience evaluation.',
-      full: 'Ethical wireless assessment against WPA handshakes — credential harvesting, handshake capture, and dictionary-based resilience evaluation.',
-      tags: ['Kali Linux', 'Fern WiFi Cracker', 'Aircrack-ng']
-    },
+    
+  
     {
       id: 'cypherra', icon: '🏴‍☠️', title: 'Cypherra',
       teaser: 'Modular CTF hosting platform — secure registration, live scoreboard analytics, and dynamic deployment architecture for custom challenges.',
